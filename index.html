@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div id="data" style="position: fixed; top: 0; right: 0; width: 400px; height: 100%; background-color: navajowhite; border: 1px solid #ccc; overflow: auto"></div>
+<!--<div id="data" style="position: fixed; top: 0; right: 0; width: 400px; height: 100%; background-color: navajowhite; border: 1px solid #ccc; overflow: auto"></div>-->
 
 <svg style="width: 150%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 4621.41 5134">
   <g style="isolation:isolate">
@@ -702,7 +702,9 @@
         <rect class="chunk" id="chunk-379" x="1185.5" y="3325.47" width="67.98" height="14.1" transform="translate(-2172.92 4373.85) rotate(-86.96)" style="fill:#389e92"/>
         <rect class="chunk" id="chunk-390" x="1166.56" y="3324.46" width="67.98" height="14.1" transform="translate(-2189.85 4353.99) rotate(-86.96)" style="fill:#389e92"/>
         <rect class="chunk" id="chunk-380" x="1183.51" y="3391.83" width="64.92" height="14.1" transform="translate(-2242.52 4433.18) rotate(-86.96)" style="fill:#286b61"/>
-        <rect class="chunk" id="chunk-389" x="1164.57" y="3390.82" width="64.92" height="14.1" transform="matrix(0.05, -1, 1, 0.05, -2259.45, 4413.32)" style="fill:#286b61"/>
+
+        <rect class="chunk" id="chunk-389" x="1153.0" y="3390.82" width="64.92" height="14.1" transform="matrix(0.05, -1, 1, 0.05, -2259.45, 4413.32)" style="fill:#286b61"/>
+
         <rect class="chunk" id="chunk-383" x="1192.05" y="3445.3" width="42.18" height="14.1" transform="translate(-2298.6 4480.99) rotate(-86.96)" style="fill:#4accbf"/>
         <rect class="chunk" id="chunk-388" x="1173.11" y="3444.3" width="42.18" height="14.1" transform="translate(-2315.54 4461.13) rotate(-86.96)" style="fill:#4accbf"/>
         <path class="chunk" id="chunk-384"
@@ -2134,10 +2136,10 @@
         $('.chunk').css('stroke', 'pink');*/
         const pathChunk = $('#chunk-' + chunk.chunk_id);
         if (pathChunk) {
-          /*$('#chunk-' + chunk.chunk_id).css('fill', color);
-          $('#chunk-' + chunk.chunk_id).css('stroke', color);*/
-          $('#chunk-' + chunk.chunk_id).css('fill', '#ccc');
-          $('#chunk-' + chunk.chunk_id).css('stroke', '#ccc');
+          $('#chunk-' + chunk.chunk_id).css('fill', color);
+          $('#chunk-' + chunk.chunk_id).css('stroke', color);
+          /*$('#chunk-' + chunk.chunk_id).css('fill', '#ccc');
+          $('#chunk-' + chunk.chunk_id).css('stroke', '#ccc');*/
         } else {
           html = '***** ' + html;
         }
