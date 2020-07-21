@@ -8,9 +8,26 @@
   <script>
     $(function () {
       const socket = io();
-      socket.on('event-test', function (obj) {
+      socket.on('update-traffic', function (chunks) {
         //alert(obj.msg);
-        $('#chunk:110').css('fill', '#ff0000');
+        //$('#chunk-110').css('fill', '#ff0000');
+        let msg = '';
+        chunks.forEach(chunk => {
+          msg += `Chunk ID: ${chunk.chunk_id}, Traffic Index: ${chunk.traffic_index}\n`;
+
+          const trafficIndex = chunk.traffic_index;
+          let color = 'green';
+          if (trafficIndex < 0.4) {
+            color = 'red';
+          } else if (trafficIndex < 0.7) {
+            color = 'orange';
+          } else {
+            color = 'green';
+          }
+
+          $('#chunk-' + chunk.chunk_id).css('fill', color);
+        });
+        //alert(msg);
       });
     });
   </script>
