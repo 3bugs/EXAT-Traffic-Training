@@ -24,20 +24,50 @@ new cronJob("*/1 * * * *", function () {
 }, null, true);
 
 fetchData = () => {
-  routeIdList.forEach(routeId => {
+  /*routeIdList.forEach(routeId => {
     fetch('https://alg.exat.co.th/api/roads/' + routeId, {
       method: 'get',
       headers: {'Authorization': 'Token 8a4e96ed4c9281af4d0c2189c6a72551fe940b43'},
     })
       .then(result => result.json())
       .then(emitResult);
+  });*/
+
+  const promiseList = [];
+  routeIdList.forEach(routeId => {
+    const promise = fetch('https://alg.exat.co.th/api/roads/' + routeId, {
+      method: 'get',
+      headers: {'Authorization': 'Token 8a4e96ed4c9281af4d0c2189c6a72551fe940b43'},
+    })
+      .then(result => result.json())
+      .then(result => result[0].chunks);
+
+    promiseList.push(promise);
+  })
+
+  Promise.all(promiseList).then(resultList => {
+    const allRouteChunks = resultList.reduce((total, chunks) => {
+      return total.concat(chunks.map(chunk => {
+          return {
+            id: chunk.chunk_id,
+            idx: chunk.traffic_index
+          };
+        })
+      );
+    }, []);
+
+    console.log(allRouteChunks);
+    io.emit('update-traffic', allRouteChunks);
   });
 };
 
 emitResult = result => {
-  const route = result[0];
-  //console.log(route)
-  io.emit('update-traffic', route);
+  /*new Promise((resolve, reject) => {
+    resolve(result[0].chunks);
+  });*/
+  return result[0].chunks;
+  /*const route = result[0];
+  io.emit('update-traffic', route);*/
 };
 
 http.listen(3000, function () {
